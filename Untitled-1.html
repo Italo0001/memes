@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>olhe só</title>
+</head>
+<body>
+    <a class="download"  >
+        Baixar Arquivo
+      </a>
+      <p id="click-count">Cliques: 0</p>
+    <script>
+     // Seleciona o botão e o elemento onde o contador será exibido
+const button = document.querySelector('.download');
+const clickCountDisplay = document.querySelector('#click-count');
+
+// Inicializa o contador de cliques
+let clickCount = 0;
+
+// Função para teletransportar o botão para uma posição aleatória
+button.addEventListener('click', function() {
+    // Incrementa o contador de cliques
+    clickCount++;
+
+    // Atualiza o contador exibido na tela
+    clickCountDisplay.textContent = `Cliques: ${clickCount}`;
+
+    // Obter as dimensões da janela
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Gerar posições aleatórias para o botão (dentro dos limites da tela)
+    const randomX = Math.random() * (windowWidth - button.offsetWidth);
+    const randomY = Math.random() * (windowHeight - button.offsetHeight);
+
+    // Mover o botão para as novas coordenadas
+    button.style.left = `${randomX}px`;
+    button.style.top = `${randomY}px`;
+});
+
+
+        </script>
+        <Style>
+            #click-count {
+    font-size: 18px;
+    margin-top: 20px;
+}
+    .download 
+    {
+        top: 50%;
+        left: 50%;
+        background-color: #ebe700;
+        position: absolute; /* Vamos usar posição absoluta para mover o botão livremente */
+        text-decoration: none;
+        border: 2px solid #000;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: all 0.1s ease;
+        cursor: pointer;
+    }
+        </Style>
+</body>
+</html>
