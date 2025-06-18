@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>olhe só</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    #click-count {
+      font-size: 18px;
+      margin: 20px;
+    }
+
+    .download {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: #ebe700;
+      text-decoration: none;
+      border: 2px solid #000;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px black;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <a class="download">Baixar Arquivo</a>
+  <p id="click-count">Cliques: 0</p>
+
+  <script>
+    const button = document.querySelector('.download');
+    const clickCountDisplay = document.querySelector('#click-count');
+    let clickCount = 0;
+
+    button.addEventListener('click', function () {
+      clickCount++;
+      clickCountDisplay.textContent = `Cliques: ${clickCount}`;
+
+      // Gera tamanhos aleatórios
+      const randomWidth = Math.floor(Math.random() * 150) + 100;
+      const randomHeight = Math.floor(Math.random() * 100) + 50;
+
+      // Cor de fallback (caso a imagem demore)
+      const randomColor = `rgb(${Math.floor(Math.random() * 256)}, 
+                              ${Math.floor(Math.random() * 256)}, 
+                              ${Math.floor(Math.random() * 256)})`;
+
+      // Imagem aleatória usando Picsum Photos
+      const imageUrl = `https://picsum.photos/${randomWidth}/${randomHeight}?random=${Math.floor(Math.random() * 1000)}`;
+
+      // Aplica tamanho e imagem
+      button.style.width = `${randomWidth}px`;
+      button.style.height = `${randomHeight}px`;
+      button.style.backgroundColor = randomColor;
+      button.style.backgroundImage = `url(${imageUrl})`;
+
+      // Calcula posição aleatória na tela (sem sair da tela)
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      const randomX = Math.random() * (windowWidth - randomWidth);
+      const randomY = Math.random() * (windowHeight - randomHeight);
+
+      button.style.left = `${randomX}px`;
+      button.style.top = `${randomY}px`;
+    });
+  </script>
+</body>
+</html>
