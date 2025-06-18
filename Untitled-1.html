@@ -6,59 +6,69 @@
     <title>olhe só</title>
 </head>
 <body>
-    <a class="download"  >
+    <a class="download">
         Baixar Arquivo
-      </a>
-      <p id="click-count">Cliques: 0</p>
+    </a>
+    <p id="click-count">Cliques: 0</p>
+
     <script>
-     // Seleciona o botão e o elemento onde o contador será exibido
-const button = document.querySelector('.download');
-const clickCountDisplay = document.querySelector('#click-count');
+        const button = document.querySelector('.download');
+        const clickCountDisplay = document.querySelector('#click-count');
+        let clickCount = 0;
 
-// Inicializa o contador de cliques
-let clickCount = 0;
+        button.addEventListener('click', function () {
+            clickCount++;
+            clickCountDisplay.textContent = `Cliques: ${clickCount}`;
 
-// Função para teletransportar o botão para uma posição aleatória
-button.addEventListener('click', function() {
-    // Incrementa o contador de cliques
-    clickCount++;
+            // Dimensões aleatórias entre 50 e 200px
+            const randomWidth = Math.floor(Math.random() * 150) + 50;
+            const randomHeight = Math.floor(Math.random() * 100) + 30;
 
-    // Atualiza o contador exibido na tela
-    clickCountDisplay.textContent = `Cliques: ${clickCount}`;
+            // Cor aleatória
+            const randomColor = `rgb(${Math.floor(Math.random() * 256)}, 
+                                     ${Math.floor(Math.random() * 256)}, 
+                                     ${Math.floor(Math.random() * 256)})`;
 
-    // Obter as dimensões da janela
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+            // Atualiza tamanho e cor
+            button.style.width = `${randomWidth}px`;
+            button.style.height = `${randomHeight}px`;
+            button.style.backgroundColor = randomColor;
 
-    // Gerar posições aleatórias para o botão (dentro dos limites da tela)
-    const randomX = Math.random() * (windowWidth - button.offsetWidth);
-    const randomY = Math.random() * (windowHeight - button.offsetHeight);
+            // Recalcula limites com novos tamanhos
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
 
-    // Mover o botão para as novas coordenadas
-    button.style.left = `${randomX}px`;
-    button.style.top = `${randomY}px`;
-});
+            const randomX = Math.random() * (windowWidth - randomWidth);
+            const randomY = Math.random() * (windowHeight - randomHeight);
 
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        });
+    </script>
 
-        </script>
-        <Style>
-            #click-count {
-    font-size: 18px;
-    margin-top: 20px;
-}
-    .download 
-    {
-        top: 50%;
-        left: 50%;
-        background-color: #ebe700;
-        position: absolute; /* Vamos usar posição absoluta para mover o botão livremente */
-        text-decoration: none;
-        border: 2px solid #000;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: all 0.1s ease;
-        cursor: pointer;
-    }
-        </Style>
+    <style>
+        #click-count {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .download {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: #ebe700;
+            text-decoration: none;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+        }
+    </style>
 </body>
 </html>
+
